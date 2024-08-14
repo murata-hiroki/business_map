@@ -5,6 +5,7 @@ import { DataList } from "../components/DataList";
 import { Demo } from "../components/Modal";
 import { MantineProvider } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { MemberList } from "../components/MemberList";
 
 const IndexPage = () => {
   const [translate, setTranslate] = React.useState({ x: 0, y: 0 });
@@ -176,7 +177,7 @@ const IndexPage = () => {
               title={selectedNode.name}
               color={selectedNode.color}
             >
-              <DataList nodeName={selectedNode.name} />
+              <MemberList />
             </Demo>
           </>
         )}

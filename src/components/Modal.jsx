@@ -1,8 +1,11 @@
 import * as React from "react";
-import { Modal } from "@mantine/core";
+import { Modal, ScrollArea } from "@mantine/core";
 import "@mantine/core/styles.css";
 
 export const Demo = ({ children, opened, onClose, title, color }) => {
+  const content = Array(100)
+    .fill(0)
+    .map((_, index) => <p key={index}>Modal with scroll</p>);
   console.log(color);
   return (
     <>
@@ -11,6 +14,7 @@ export const Demo = ({ children, opened, onClose, title, color }) => {
         onClose={onClose}
         title={title}
         centered
+        size={"xl"}
         styles={{
           header: {
             backgroundColor: `${color}`,
@@ -22,6 +26,7 @@ export const Demo = ({ children, opened, onClose, title, color }) => {
             margin: 0,
           },
         }}
+        scrollAreaComponent={ScrollArea.Autosize}
       >
         {children}
       </Modal>
