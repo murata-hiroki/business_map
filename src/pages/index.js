@@ -1,7 +1,6 @@
 import * as React from "react";
 import Tree from "react-d3-tree";
 import "./style.scss";
-import { DataList } from "../components/DataList";
 import { Demo } from "../components/Modal";
 import { MantineProvider } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -177,7 +176,7 @@ const IndexPage = () => {
               title={selectedNode.name}
               color={selectedNode.color}
             >
-              <MemberList />
+              <MemberList nodeName={selectedNode.name} />
             </Demo>
           </>
         )}
