@@ -16,4 +16,28 @@
     JCメンバー特典！！ チャージ無料✨
     団体でのご利用なら飲み放題や貸切もやりますよー😊
     何かある際は気軽に聞いてください✨
-  photo_url: https://drive.google.com/open?id=1CEbrm_Qm2CQjn7W3mGLbCXETzZc74H56
+  photo_url: ../images/test.jpeg
+
+- lom_name: 東大阪
+  entry_year: 2019
+  name:
+    kanji: 南原 義幸
+    kana: ナンバラ ヨシユキ
+  phone: 080-3792-0206
+  company:
+    name: ヨシ整骨院
+    industry: サービス
+    address: 大阪府東大阪市寿町3丁目18-15
+    description: |
+      創立 2015年 12/27日
+      自営業 ヨシ整骨院
+      Tel 06-7492-4730
+      院長 南原義幸
+      受付時間 9:00~12:00 15:00~19:30
+    overview: 当院は どこよりもはやく痛みとり根本改善を目指す治療院です。交通事故もお任せください
+    pr: 遠い地域の方も通われてる整骨•整体院です。怪我じゃなくても体の疲労回復や体を整えることもできます。体の事で悩んだ時はお気軽にご相談ください^_^
+    urls:
+      - https://www.yoshi-seikotsu.com/
+      - https://www.ekiten.jp/shop_7078022/
+      - https://maps.app.goo.gl/RVVf4v2fej3bfkYq5?g_st=com.google.maps.preview.copy
+  photo_url: ../images/nanbara.png

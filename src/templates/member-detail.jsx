@@ -8,6 +8,7 @@ const MemberDetail = ({ pageContext: { memberData } }) => {
   const { name, company, lom_name, entry_year, phone, member_pr, photo_url } =
     memberData;
 
+  const imageUrl = photo_url ? photo_url.publicURL : null;
   return (
     <MantineProvider>
       <div className={styles.pageWrapper}>
@@ -19,7 +20,7 @@ const MemberDetail = ({ pageContext: { memberData } }) => {
             <div className={styles.profileSection}>
               <div className={styles.imageContainer}>
                 <img
-                  src={photo_url}
+                  src={imageUrl}
                   alt={name.kanji}
                   className={styles.profileImage}
                 />

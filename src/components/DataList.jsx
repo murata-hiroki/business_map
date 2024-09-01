@@ -24,7 +24,9 @@ export const DataList = ({ nodeName }) => {
             urls
           }
           member_pr
-          photo_url
+          photo_url {
+            publicURL
+          }
         }
       }
     }

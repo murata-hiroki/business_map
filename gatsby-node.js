@@ -25,7 +25,9 @@ exports.createPages = async ({ actions, graphql }) => {
           entry_year
           phone
           member_pr
-          photo_url
+          photo_url {
+            publicURL
+          }
         }
       }
     }
@@ -58,6 +60,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
       type ProfileYaml implements Node {
         company: ProfileYamlCompany!
+        photo_url: File @fileByRelativePath
       }
       type ProfileYamlCompany {
         name: String!
