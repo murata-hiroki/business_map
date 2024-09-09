@@ -1,0 +1,121 @@
+.pageWrapper {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #0077b5;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.card {
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.profileSection {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.imageContainer {
+  flex: 0 0 200px;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.infoContainer {
+  flex: 1;
+}
+
+.name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.info {
+  .mantine-Group-root {
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .mantine-Text-root {
+    line-height: 1.4;
+  }
+}
+
+.info_space {
+  margin-bottom: 1rem;
+}
+
+.iconColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+:global {
+  .mantine-Grid-inner {
+    align-items: center;
+  }
+}
+
+.description,
+.memberPr,
+.urls {
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.urls {
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profileSection {
+    flex-direction: column;
+  }
+
+  .imageContainer {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    flex: 0 0 auto;
+  }
+
+  .profileImage {
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+  }
+}
