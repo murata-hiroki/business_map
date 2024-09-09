@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Card, Avatar } from "@mantine/core";
+import { Card, Group, Text, Grid } from "@mantine/core";
 import { MantineProvider } from "@mantine/core";
+import {
+  IconPhone,
+  IconBuilding,
+  IconBriefcase,
+  IconMapPin,
+  IconCalendar,
+  IconArrowLeft,
+} from "@tabler/icons-react";
 import * as styles from "../styles/MemberDetail.module.scss";
 
 const MemberDetail = ({ pageContext: { memberData } }) => {
@@ -9,6 +17,20 @@ const MemberDetail = ({ pageContext: { memberData } }) => {
     memberData;
 
   const imageUrl = photo_url ? photo_url.publicURL : null;
+
+  const InfoItem = ({ icon, label, value }) => (
+    <Grid gutter="xs" className={styles.info_space}>
+      <Grid.Col span={1} className={styles.iconColumn}>
+        {icon}
+      </Grid.Col>
+      <Grid.Col span={11} className={styles.textColumn}>
+        <Text>
+          <strong>{label}:</strong> {value}
+        </Text>
+      </Grid.Col>
+    </Grid>
+  );
+
   return (
     <MantineProvider>
       <div className={styles.pageWrapper}>
@@ -28,24 +50,31 @@ const MemberDetail = ({ pageContext: { memberData } }) => {
               <div className={styles.infoContainer}>
                 <h1 className={styles.name}>{name.kanji}</h1>
                 <div className={styles.info}>
-                  <p>
-                    <strong>会社名:</strong> {company.name}
-                  </p>
-                  <p>
-                    <strong>業種:</strong> {company.industry}
-                  </p>
-                  <p>
-                    <strong>所在地:</strong> {company.address}
-                  </p>
-                  <p>
-                    <strong>所属LOM:</strong> {lom_name}
-                  </p>
-                  <p>
-                    <strong>入会年度:</strong> {entry_year}
-                  </p>
-                  <p>
-                    <strong>電話番号:</strong> {phone}
-                  </p>
+                  <InfoItem
+                    icon={<IconBuilding size={18} />}
+                    label="会社名"
+                    value={company.name}
+                  />
+                  <InfoItem
+                    icon={<IconBriefcase size={18} />}
+                    label="業種"
+                    value={company.industry}
+                  />
+                  <InfoItem
+                    icon={<IconMapPin size={18} />}
+                    label="所在地"
+                    value={company.address}
+                  />
+                  <InfoItem
+                    icon={<IconCalendar size={18} />}
+                    label="入会年度"
+                    value={entry_year}
+                  />
+                  <InfoItem
+                    icon={<IconPhone size={18} />}
+                    label="電話番号"
+                    value={phone}
+                  />
                 </div>
               </div>
             </div>

@@ -1,12 +1,13 @@
 .pageWrapper {
-  background-color: #d2d2d2;
+  background-color: #f0f2f5;
   min-height: 100vh;
+  padding: 2rem 0;
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 1rem;
 }
 
 .backLink {
@@ -52,8 +53,30 @@
 }
 
 .info {
-  p {
+  .mantine-Group-root {
+    align-items: flex-start;
     margin-bottom: 0.5rem;
+  }
+
+  .mantine-Text-root {
+    line-height: 1.4;
+  }
+}
+
+.info_space {
+  margin-bottom: 1rem;
+}
+
+.iconColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+:global {
+  .mantine-Grid-inner {
+    align-items: center;
   }
 }
 

@@ -4,13 +4,14 @@ import { Card, Avatar } from "@mantine/core";
 import * as styles from "../styles/MemberList.module.scss";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
-const MemberCard = ({ id, name, company, lom_name, address }) => {
+const MemberCard = ({ id, name, company, lom_name, address, photo_url }) => {
+  console.log(photo_url);
   return (
     <Link to={`/${id}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.cardContent}>
           <div className={styles.avatarContainer}>
-            <Avatar size="7rem" />
+            <Avatar size="7rem" src={photo_url} />
           </div>
           <div className={styles.infoContainer}>
             <h3 className={styles.name}>{name}</h3>
@@ -24,7 +25,7 @@ const MemberCard = ({ id, name, company, lom_name, address }) => {
   );
 };
 
-export const MemberList = ({ nodeName }) => {
+export const MemberList = ({ industries }) => {
   const data = useStaticQuery(graphql`
     query {
       allProfileYaml {
@@ -55,11 +56,16 @@ export const MemberList = ({ nodeName }) => {
     }
   `);
 
-  console.log(nodeName);
-  const filteredMemberData = data.allProfileYaml.nodes.filter((node) => {
-    console.log(`Comparing ${node.company.industry} with ${nodeName}`);
-    return node.company.industry === `${nodeName}`;
-  });
+  console.log("Industries:", industries);
+
+  const filteredMemberData = industries.includes("河内地域")
+    ? data.allProfileYaml.nodes
+    : data.allProfileYaml.nodes.filter((node) => {
+        console.log(
+          `Comparing ${node.company.industry} with ${industries.join(", ")}`
+        );
+        return industries.includes(node.company.industry);
+      });
 
   if (filteredMemberData.length === 0) {
     return (
@@ -69,19 +75,20 @@ export const MemberList = ({ nodeName }) => {
     );
   }
 
-  console.log(filteredMemberData);
+  console.log("Filtered member data:", filteredMemberData);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>河内地域メンバーリスト</h1>
-      {filteredMemberData.map((filteredMemberData, index) => (
+      {filteredMemberData.map((memberData, index) => (
         <MemberCard
           key={index}
-          id={filteredMemberData.id}
-          name={filteredMemberData.name.kanji}
-          company={filteredMemberData.company.name}
-          lom_name={filteredMemberData.lom_name}
-          address={filteredMemberData.company.address}
+          id={memberData.id}
+          name={memberData.name.kanji}
+          company={memberData.company.name}
+          lom_name={memberData.lom_name}
+          address={memberData.company.address}
+          photo_url={memberData.photo_url.publicURL}
         />
       ))}
     </div>
