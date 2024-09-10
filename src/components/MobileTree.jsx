@@ -5,7 +5,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
   const [expandedNodes, setExpandedNodes] = useState([]);
 
   const toggleNode = (nodeName, event) => {
-    event.stopPropagation(); // イベントの伝播を止める
+    event.stopPropagation();
     setExpandedNodes((prev) =>
       prev.includes(nodeName)
         ? prev.filter((name) => name !== nodeName)
@@ -26,7 +26,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
             marginBottom: "10px",
             cursor: "pointer",
           }}
-          onClick={() => onNodeClick(node)} // ノード本体のクリックでモーダルを表示
+          onClick={() => onNodeClick(node)}
           whileTap={{ scale: 0.95 }}
         >
           <motion.div
@@ -41,7 +41,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
               marginRight: "10px",
               boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
             }}
-            onClick={(e) => hasChildren && toggleNode(node.name, e)} // プラスボタンのクリックで展開/折りたたみ
+            onClick={(e) => hasChildren && toggleNode(node.name, e)}
           >
             {hasChildren && (
               <span style={{ fontSize: "20px", color: "#fff" }}>
@@ -94,7 +94,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
       >
         河内地域ビジネスマップ
       </h1>
-      {renderNode(data[0])}
+      {renderNode(data)}
     </div>
   );
 };
