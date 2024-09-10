@@ -5,7 +5,6 @@ import * as styles from "../styles/MemberList.module.scss";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
 const MemberCard = ({ id, name, company, lom_name, address, photo_url }) => {
-  console.log(photo_url);
   return (
     <Link to={`/${id}`} className={styles.link}>
       <Card className={styles.card}>
@@ -26,6 +25,7 @@ const MemberCard = ({ id, name, company, lom_name, address, photo_url }) => {
 };
 
 export const MemberList = ({ industries }) => {
+  console.log(industries);
   const data = useStaticQuery(graphql`
     query {
       allProfileYaml {
@@ -84,11 +84,12 @@ export const MemberList = ({ industries }) => {
         <MemberCard
           key={index}
           id={memberData.id}
-          name={memberData.name.kanji}
-          company={memberData.company.name}
-          lom_name={memberData.lom_name}
-          address={memberData.company.address}
-          photo_url={memberData.photo_url.publicURL}
+          name={memberData.name?.kanji || "名前なし"}
+          company={memberData.company?.name || "会社名なし"}
+          lom_name={memberData.lom_name || "LOM名なし"}
+          address={memberData.company?.address || "住所なし"}
+          member_pr={memberData.member_pr}
+          photo_url={memberData.photo_url?.publicURL}
         />
       ))}
     </div>

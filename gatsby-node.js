@@ -58,19 +58,29 @@ exports.createPages = async ({ actions, graphql }) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
-      type ProfileYaml implements Node {
-        company: ProfileYamlCompany!
-        photo_url: File @fileByRelativePath
-      }
-      type ProfileYamlCompany {
-        name: String!
-        industry: String!
-        address: String!
-        description: String!
-        overview: String!
-        pr: String!
-        urls: [String!]!
-      }
-    `;
+    type ProfileYaml implements Node {
+      id: ID!
+      name: ProfileYamlName!
+      company: ProfileYamlCompany!
+      lom_name: String
+      entry_year: String
+      phone: String
+      member_pr: String
+      photo_url: File @fileByRelativePath
+    }
+    type ProfileYamlName {
+      kanji: String
+      kana: String
+    }
+    type ProfileYamlCompany {
+      name: String
+      industry: String
+      address: String
+      description: String
+      overview: String
+      pr: String
+      urls: [String]
+    }
+  `;
   createTypes(typeDefs);
 };
