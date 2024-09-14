@@ -83,8 +83,6 @@
 .description,
 .memberPr,
 .urls {
-  margin-bottom: 2rem;
-
   h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -117,5 +115,9 @@
     max-width: 200px;
     margin: 0 auto;
     display: block;
+  }
+
+  .name {
+    text-align: center;
   }
 }
