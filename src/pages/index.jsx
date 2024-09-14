@@ -1,13 +1,13 @@
 import * as React from "react";
-import "./style.scss";
 import { Demo } from "../components/Modal";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MemberList } from "../components/MemberList";
 import MobileTreeView from "../components/MobileTree";
 import Loading from "../components/Loading";
 import CustomCircularTree from "../components/CustomCircularTree";
 import { graphql, useStaticQuery } from "gatsby";
+import * as styles from "./index.module.scss";
 
 const IndexPage = () => {
   const [treeData, setTreeData] = React.useState(null);
@@ -16,19 +16,42 @@ const IndexPage = () => {
   const [isMobile, setIsMobile] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   // GraphQLクエリを使用してYMLファイルからデータを取得
   const data = useStaticQuery(graphql`
     query {
       allProfileYaml {
         nodes {
+          name {
+            kanji
+            kana
+          }
           company {
             industry
+            name
+            address
+          }
+          lom_name
+          entry_year
+          phone
+          member_pr
+          photo_url {
+            publicURL
           }
         }
       }
     }
   `);
+
+  // 検索キーワードに基づいてデータをフィルタリング
+  const filteredData = searchTerm
+    ? data.allProfileYaml.nodes.filter(
+        (node) =>
+          node.name.kanji.includes(searchTerm) ||
+          node.name.kana.includes(searchTerm)
+      )
+    : [];
 
   React.useEffect(() => {
     // YMLデータから業種ごとのメンバー数を計算
@@ -55,13 +78,13 @@ const IndexPage = () => {
         { name: "リサイクル", color: "#2ECC71" },
         { name: "士業", color: "#8E44AD" },
         { name: "行政", color: "#3498DB" },
-        { name: "その他", color: "#95A5A6" },
         { name: "冠婚葬祭", color: "#5D6D7E" },
         { name: "人材派遣", color: "#F1948A" },
         { name: "運送", color: "#16A085" },
         { name: "不動産", color: "#D35400" },
         { name: "建築土木", color: "#F39C12" },
         { name: "製造", color: "#7F8C8D" },
+        { name: "その他", color: "#95A5A6" },
       ],
     };
 
@@ -126,10 +149,33 @@ const IndexPage = () => {
 
   return (
     <MantineProvider>
+      <h2 className={styles.title}>河内地域ビジネスマップ</h2>
+      <TextInput
+        placeholder="メンバー名で検索"
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.currentTarget.value)}
+        className={styles.textInput}
+      />
+      {filteredData.length > 0 && (
+        <div className={styles.results}>
+          {filteredData.map((profile, index) => (
+            <div key={index} className={styles.profileCard}>
+              <img
+                src={profile.photo_url.publicURL}
+                alt={profile.name.kanji}
+                className={styles.profileImage}
+              />
+              <h3>
+                {profile.name.kanji} ({profile.name.kana})
+              </h3>
+            </div>
+          ))}
+        </div>
+      )}
       <div
         id="treeWrapper"
         className="treeWrapper"
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100vw", height: "calc(100vh - 60px)" }}
       >
         {isMobile ? (
           <MobileTreeView data={treeData} onNodeClick={handleNodeClick} />
@@ -158,4 +204,14 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>河内地域ビジネスマップ</title>;
+export const Head = () => {
+  return (
+    <>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+      <title>河内地域ビジネスマップ</title>
+    </>
+  );
+};

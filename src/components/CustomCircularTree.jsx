@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, tree } from "d3-hierarchy";
-import { scaleLinear } from "d3-scale";
 
 const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
   const [layout, setLayout] = useState(null);
@@ -10,10 +9,9 @@ const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
   const centerY = height / 2;
   const radius = Math.min(width, height) / 2 - 100;
 
-  // メンバー数に基づいてノードサイズを計算するスケール関数
-  const nodeSizeScale = scaleLinear()
-    .domain([0, Math.max(...data.children.map((d) => d.memberCount))])
-    .range([20, 60]); // 最小サイズ20、最大サイズ60
+  // 固定のノードサイズを設定
+  const rootNodeSize = 80;
+  const childNodeSize = 40;
 
   const layoutTree = useCallback(() => {
     const root = hierarchy(data);
@@ -31,25 +29,15 @@ const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
 
   if (!layout) return null;
 
-  const getTextColor = (backgroundColor) => {
-    const r = parseInt(backgroundColor.slice(1, 3), 16);
-    const g = parseInt(backgroundColor.slice(3, 5), 16);
-    const b = parseInt(backgroundColor.slice(5, 7), 16);
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return brightness > 128 ? "black" : "white";
-  };
-
   const renderNode = (node, index) => {
     if (!node || !node.data) return null;
 
     const isRoot = node.depth === 0;
-    const nodeSize = isRoot ? 80 : nodeSizeScale(node.data.memberCount);
+    const nodeSize = isRoot ? rootNodeSize : childNodeSize;
 
     const angle = node.x - Math.PI / 2;
     const x = Math.cos(angle) * node.y + centerX;
     const y = Math.sin(angle) * node.y + centerY;
-
-    const textColor = getTextColor(node.data.color);
 
     return (
       <Group
@@ -65,26 +53,15 @@ const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
         />
         <text
           dy=".33em"
-          fontSize={isRoot ? 14 : 12}
-          fontFamily="Arial"
+          fontSize={isRoot ? 18 : 14}
+          fontFamily="'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif"
+          fontWeight={isRoot ? "bold" : "normal"}
           textAnchor="middle"
           style={{ pointerEvents: "none" }}
-          fill={textColor}
+          fill={"white"}
         >
           {node.data.name}
         </text>
-        {!isRoot && (
-          <text
-            dy="1.5em"
-            fontSize={10}
-            fontFamily="Arial"
-            textAnchor="middle"
-            style={{ pointerEvents: "none" }}
-            fill={textColor}
-          >
-            ({node.data.memberCount})
-          </text>
-        )}
       </Group>
     );
   };

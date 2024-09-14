@@ -1,0 +1,124 @@
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #8b00ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 6s ease-in-out infinite;
+  background-size: 400% 100%;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #8b00ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 6s ease-in-out infinite;
+  background-size: 400% 100%;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.searchBar {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* コンテンツを中央に配置 */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.profileCard {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%; /* カードを100%幅に設定 */
+}
+
+.profileImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.profileCard h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileDetails p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.profileDetails p span {
+  font-weight: 600;
+}
+
+.textInput {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem; // 768px以下での新しいフォントサイズ
+  }
+
+  .profileCard {
+    max-width: 90%; /* モバイルデバイスでのカード幅を調整 */
+  }
+}
+
+@keyframes rainbow {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+}

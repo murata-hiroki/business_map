@@ -1,5 +1,47 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaUtensils,
+  FaStore,
+  FaHandHoldingHeart,
+  FaHospital,
+  FaGraduationCap,
+  FaLaptopCode,
+  FaMoneyBillWave,
+  FaPrint,
+  FaRecycle,
+  FaBalanceScale,
+  FaLandmark,
+  FaEllipsisH,
+  FaRing,
+  FaUserTie,
+  FaTruck,
+  FaHome,
+  FaHardHat,
+  FaIndustry,
+} from "react-icons/fa";
+
+// 業種とアイコンのマッピング
+const industryIcons = {
+  飲食: FaUtensils,
+  小売販売: FaStore,
+  福祉: FaHandHoldingHeart,
+  医療: FaHospital,
+  教育: FaGraduationCap,
+  IT: FaLaptopCode,
+  金融: FaMoneyBillWave,
+  印刷: FaPrint,
+  リサイクル: FaRecycle,
+  士業: FaBalanceScale,
+  行政: FaLandmark,
+  その他: FaEllipsisH,
+  冠婚葬祭: FaRing,
+  人材派遣: FaUserTie,
+  運送: FaTruck,
+  不動産: FaHome,
+  建築土木: FaHardHat,
+  製造: FaIndustry,
+};
 
 const MobileTreeView = ({ data, onNodeClick }) => {
   const [expandedNodes, setExpandedNodes] = useState([]);
@@ -16,6 +58,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
   const renderNode = (node, level = 0) => {
     const isExpanded = expandedNodes.includes(node.name);
     const hasChildren = node.children && node.children.length > 0;
+    const Icon = industryIcons[node.name] || FaEllipsisH;
 
     return (
       <div key={node.name} style={{ marginLeft: `${level * 20}px` }}>
@@ -43,11 +86,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
             }}
             onClick={(e) => hasChildren && toggleNode(node.name, e)}
           >
-            {hasChildren && (
-              <span style={{ fontSize: "20px", color: "#fff" }}>
-                {isExpanded ? "−" : "+"}
-              </span>
-            )}
+            <Icon size={node.size === "large" ? 30 : 20} color="white" />
           </motion.div>
           <span
             style={{
@@ -84,16 +123,6 @@ const MobileTreeView = ({ data, onNodeClick }) => {
         height: "100%",
       }}
     >
-      <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "20px",
-          fontSize: "24px",
-          color: "#333",
-        }}
-      >
-        河内地域ビジネスマップ
-      </h1>
       {renderNode(data)}
     </div>
   );
