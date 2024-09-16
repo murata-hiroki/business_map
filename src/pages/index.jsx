@@ -23,6 +23,7 @@ const IndexPage = () => {
     query {
       allProfileYaml {
         nodes {
+          id
           name {
             kanji
             kana
@@ -149,54 +150,61 @@ const IndexPage = () => {
 
   return (
     <MantineProvider>
-      <h2 className={styles.title}>河内地域ビジネスマップ</h2>
-      <TextInput
-        placeholder="メンバー名で検索"
-        value={searchTerm}
-        onChange={(event) => setSearchTerm(event.currentTarget.value)}
-        className={styles.textInput}
-      />
-      {filteredData.length > 0 && (
-        <div className={styles.results}>
-          {filteredData.map((profile, index) => (
-            <div key={index} className={styles.profileCard}>
-              <img
-                src={profile.photo_url.publicURL}
-                alt={profile.name.kanji}
-                className={styles.profileImage}
-              />
-              <h3>
-                {profile.name.kanji} ({profile.name.kana})
-              </h3>
-            </div>
-          ))}
+      <div className={styles.pageWrapper}>
+        <h2 className={styles.title}>河内地域ビジネスマップ</h2>
+        <TextInput
+          placeholder="メンバー名で検索"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.currentTarget.value)}
+          className={styles.textInput}
+        />
+        {filteredData.length > 0 && (
+          <div className={styles.results}>
+            {filteredData.map((profile, index) => {
+              console.log(profile);
+              return (
+                <a href={profile.id} key={index} className={styles.profileLink}>
+                  <div className={styles.profileCard}>
+                    <img
+                      src={profile.photo_url.publicURL}
+                      alt={profile.name.kanji}
+                      className={styles.profileImage}
+                    />
+                    <h3>
+                      {profile.name.kanji} ({profile.name.kana})
+                    </h3>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        )}
+        <div
+          id="treeWrapper"
+          className={styles.treeWrapper}
+          style={{ width: "100vw", height: "calc(100vh - 60px)" }}
+        >
+          {isMobile ? (
+            <MobileTreeView data={treeData} onNodeClick={handleNodeClick} />
+          ) : (
+            <CustomCircularTree
+              data={treeData}
+              width={dimensions.width}
+              height={dimensions.height}
+              onNodeClick={handleNodeClick}
+            />
+          )}
+          {selectedNode && (
+            <Demo
+              opened={opened}
+              onClose={close}
+              title={selectedNode.name}
+              color={selectedNode.color}
+            >
+              <MemberList industries={selectedNode.industries} />
+            </Demo>
+          )}
         </div>
-      )}
-      <div
-        id="treeWrapper"
-        className="treeWrapper"
-        style={{ width: "100vw", height: "calc(100vh - 60px)" }}
-      >
-        {isMobile ? (
-          <MobileTreeView data={treeData} onNodeClick={handleNodeClick} />
-        ) : (
-          <CustomCircularTree
-            data={treeData}
-            width={dimensions.width}
-            height={dimensions.height}
-            onNodeClick={handleNodeClick}
-          />
-        )}
-        {selectedNode && (
-          <Demo
-            opened={opened}
-            onClose={close}
-            title={selectedNode.name}
-            color={selectedNode.color}
-          >
-            <MemberList industries={selectedNode.industries} />
-          </Demo>
-        )}
       </div>
     </MantineProvider>
   );
