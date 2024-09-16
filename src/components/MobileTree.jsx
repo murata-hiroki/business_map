@@ -94,7 +94,7 @@ const MobileTreeView = ({ data, onNodeClick }) => {
               fontWeight: level === 0 ? "bold" : "normal",
             }}
           >
-            {node.name}
+            {node.name}({node.memberCount} 人)
           </span>
         </motion.div>
         <AnimatePresence>
