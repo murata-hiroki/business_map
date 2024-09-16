@@ -3,6 +3,7 @@ import { Group } from "@visx/group";
 import { hierarchy, tree } from "d3-hierarchy";
 
 const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
+  console.log(data);
   const [layout, setLayout] = useState(null);
 
   const centerX = width / 2;
@@ -61,6 +62,16 @@ const CustomCircularTree = ({ data, width, height, onNodeClick }) => {
           fill={"white"}
         >
           {node.data.name}
+        </text>
+        <text
+          fill="white"
+          fontSize="10"
+          fontWeight="bold" // フォントを濃くする
+          x={0}
+          y={20} // y座標を少し下に設定して、ノード名の下に配置
+          textAnchor="middle"
+        >
+          {node.data.memberCount} 人
         </text>
       </Group>
     );
