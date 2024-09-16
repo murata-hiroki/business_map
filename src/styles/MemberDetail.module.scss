@@ -1,3 +1,11 @@
+body {
+  font-family: "Poppins", sans-serif; /* 例としてPoppinsフォントを使用 */
+}
+
+.name {
+  font-family: "Merriweather", serif; /* 名前を強調するためにセリフ体を使用 */
+}
+
 .pageWrapper {
   background-color: #f0f2f5;
   min-height: 100vh;
@@ -89,6 +97,19 @@
   }
 }
 
+.name,
+.description h2,
+.memberPr h2 {
+  color: #333;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+}
+
+.infoContainer {
+  line-height: 1.6;
+}
+
 .urls {
   ul {
     list-style-type: none;
@@ -97,6 +118,23 @@
     li {
       margin-bottom: 0.5rem;
     }
+  }
+}
+
+.card,
+.description,
+.memberPr {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
