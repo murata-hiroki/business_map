@@ -151,7 +151,7 @@ const IndexPage = () => {
   return (
     <MantineProvider>
       <div className={styles.pageWrapper}>
-        <h2 className={styles.title}>河内地域ビジネスマップ</h2>
+        <h2 className={styles.title}>河内地域つながりマップ</h2>
         <TextInput
           placeholder="メンバー名で検索"
           value={searchTerm}
@@ -219,7 +219,7 @@ export const Head = () => {
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
         rel="stylesheet"
       />
-      <title>河内地域ビジネスマップ</title>
+      <title>河内地域つながりマップ</title>
     </>
   );
 };
