@@ -2123,7 +2123,7 @@
       - https://www.instagram.com/kishi.k.air?igsh=MTFxMWZrOWR1czVseQ%3D%3D&utm_source=qr
   member_pr: 松原の空調屋さんで覚えて下さい‼︎
   photo_url: ../images/image1.jpeg
-- lom_name: 河内長野
+- lom_name: 柏原
   entry_year: 2014年度
   name:
     kanji: 水原　慶治
@@ -2131,7 +2131,7 @@
   phone: 090-5011-0241
   company:
     name: 水原会計事務所
-    industry: 士業(税理士)
+    industry: 士業
     address: 大阪市中央区西心斎橋1-10-12
     overview: 開業・法人設立・創業融資などベンチャー企業に強い税理士の水原と申します。 大阪の心斎橋に事務所があり、大阪を中心に活動しております。
     pr: 心斎橋近辺での法人設立・創業融資でしたら、 お値段、実績、スキル、NO.1です。 ①法人設立：相場10万円の司法書士手数料を無料にできます。         ②資金調達：創業融資の成功率100％を継続中（約200件/200件） ③破産しなくても会社を再生させる方法（有事の資金繰り）： 大阪で提供できる税理士は私くらいです。
@@ -2139,3 +2139,34 @@
       - https://mizuhara-tax.com/
   member_pr: 借金で自殺するくらいなら一度相談へ来い。金なんかで死ぬな！
   photo_url: ../images/image134.JPG
+- lom_name: 東大阪
+  entry_year: 平成31
+  name:
+    kanji: 一ノ瀬雪代
+    kana: イチノセユキヨ
+  phone: 090-6967-8531
+  company:
+    name: 居酒屋 福娘（FUKUME）
+    industry: 飲食店
+    address: 大阪府大阪市阿倍野区西田辺町１丁目２−４
+    overview: 飲食店
+    pr: 新鮮な美味しいお魚、お肉料理、お酒を提供しています！
+    urls:
+      - https://maps.app.goo.gl/2L8peQyvMKAXDQ9t7?g_st=com.google.maps.preview.copy
+  member_pr: 飲食店経営しています。 よろしくお願いします
+  photo_url: ../images/image135.jpeg
+- lom_name: 東大阪
+  entry_year: 2023年
+  name:
+    kanji: 柳生花苗
+    kana: ヤギュウカナエ
+  phone: 080-4828-6973
+  company:
+    name: club 古賀
+    industry: 飲食店
+    address: 大阪市北区堂島浜1-3-22堂島タウンビル3階
+    overview: 北新地の高級店ですw
+    pr: 源氏名みたら誰？みたいな感じですが、女の子50人を束ねる敏腕チーママしてます。接待などにも使えます！よろしくお願いします！
+    urls: []
+  member_pr: 一度と言わず二度三度でも遊びに来てください☻
+  photo_url: ../images/image136.jpeg
